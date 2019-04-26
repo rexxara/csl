@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#66ccff">
+</head>
+<body>
+    <script>
+        const colors=["#66CCFF","#6200EE","#03DAC6","#B00020","#000000","#FFFFFF"]
+        var metas=document.getElementsByTagName("meta")
+        var metaTheme=null
+        Array.prototype.map.call(metas,(v,k)=>{
+            var attr=v.getAttribute("name")
+            if(attr==="theme-color"){
+                metaTheme=v
+            setTimeout(()=>{changeColor(0)}, 1000)
+            }
+        })
+        function changeColor(count){
+            console.log(count)
+            if(!metaTheme) return 
+            metaTheme.setAttribute("content",colors[count])
+            setTimeout(()=>{changeColor((count+1)%colors.length)}, 1000)
+        }
+        </script>
+</body>
+</html>
