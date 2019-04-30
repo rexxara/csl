@@ -1,5 +1,6 @@
 
 console.log('logger')
+
 let con = null
 let toggle = null
 const defaultSetting = {
@@ -16,9 +17,10 @@ function addStyle(target, obj) {
 }
 function render(param) {
     const type = Object.prototype.toString.call(param)
-    console.log(param,type,'inrender')
+    // console.log(param, type, 'inrender')
     switch (type) {
         case '[object Array]':
+        console.log(param)
             let res = document.createElement("SPAN")
             res.className = 'array'
             let left = document.createElement("SPAN")
@@ -46,10 +48,10 @@ function render(param) {
         case '[object HTMLSpanElement]':
             return param
         case '[object Null]':
-        let nnull = document.createElement("SPAN")
-        nnull.style.color = "#7d7d7d"
-        nnull.innerText += "null"
-        return nnull
+            let nnull = document.createElement("SPAN")
+            nnull.style.color = "#7d7d7d"
+            nnull.innerText += "null"
+            return nnull
         case '[object Number]':
             let number = document.createElement("SPAN")
             number.style.color = "#7261bb"
@@ -60,6 +62,11 @@ function render(param) {
             string.style.color = "#e68551"
             string.innerText = param
             return string
+        case '[object Undefined]':
+            let Undefined = document.createElement("SPAN")
+            Undefined.style.color = "#9df0f0"
+            Undefined.innerText = param
+            return Undefined
         default:
             let def = document.createElement("SPAN")
             def.className = 'default'
@@ -74,9 +81,10 @@ function consolelog(setting) {
         ...setting
     })
     return function () {
-        const line =document.createElement("p")
-        line.style.margin="3px"
-        line.appendChild(render(arguments[0]))
+        const line = document.createElement("p")
+        line.style.margin = "3px"
+        console.log(arguments)
+         Array.prototype.map.call(arguments, v => render(v)).map(v=>line.appendChild(v))
         con.appendChild(line)
     }
 }
@@ -100,7 +108,7 @@ function init(setting) {
         bottom: open ? "0" : '-40vw',
         overflow: "scroll",
         transition: 'all ease-in 0.5s',
-        "font-family":'Arial'
+        "font-family": 'Arial'
     }
     const toggleBtnStyle = {
         width: '7vw',

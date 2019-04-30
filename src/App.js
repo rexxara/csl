@@ -1,6 +1,9 @@
 import {ThemeContext, themes} from './theme-context';
 import ThemedButton from './themed-button';
 import React ,{useContext,createContext}from 'react';
+import Input from './component/inputTest'
+
+
 // An intermediate component that uses the ThemedButton
 function Toolbar(props) {
   return (
@@ -40,7 +43,6 @@ class App extends React.Component {
       }));
     };
   }
-
   render() {
     // The ThemedButton button inside the ThemeProvider
     // uses the theme from state while the one outside uses
@@ -54,6 +56,7 @@ class App extends React.Component {
         <div>
           <ThemedButton text={"1111"}/>
         </div>
+        <Input/>
       </div>
     );
   }
