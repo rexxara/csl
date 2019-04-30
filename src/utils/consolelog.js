@@ -20,7 +20,7 @@ function render(param) {
     // console.log(param, type, 'inrender')
     switch (type) {
         case '[object Array]':
-        console.log(param)
+            console.log(param)
             let res = document.createElement("SPAN")
             res.className = 'array'
             let left = document.createElement("SPAN")
@@ -57,6 +57,11 @@ function render(param) {
             number.style.color = "#7261bb"
             number.innerText += param
             return number
+        case '[object Object]':
+            let obj = document.createElement("SPAN")
+            obj.style.color = "#7261bb"
+            obj.innerText += JSON.stringify(param)
+            return obj
         case '[object String]':
             let string = document.createElement("SPAN")
             string.style.color = "#e68551"
@@ -84,7 +89,7 @@ function consolelog(setting) {
         const line = document.createElement("p")
         line.style.margin = "3px"
         console.log(arguments)
-         Array.prototype.map.call(arguments, v => render(v)).map(v=>line.appendChild(v))
+        Array.prototype.map.call(arguments, v => render(v)).map(v => line.appendChild(v))
         con.appendChild(line)
     }
 }
