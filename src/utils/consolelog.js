@@ -17,7 +17,6 @@ function addStyle(target, obj) {
 }
 function render(param) {
     const type = Object.prototype.toString.call(param)
-    // console.log(param, type, 'inrender')
     switch (type) {
         case '[object Array]':
             console.log(param)
@@ -112,6 +111,7 @@ function init(setting) {
         position: 'fixed',
         bottom: open ? "0" : '-40vw',
         overflow: "scroll",
+        left:'0',
         transition: 'all ease-in 0.5s',
         "font-family": 'Arial'
     }

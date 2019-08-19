@@ -21,7 +21,6 @@ class Input extends React.Component {
         listenKeybord.remove(this.state.inputlistener)
     }
     addHandle = () => {
-        window.csl('add')
         const inputlistener = listenKeybord.add(
             document.getElementById("rexxara"),
             () => { window.csl('键盘弹起啦') },
